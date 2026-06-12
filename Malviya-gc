@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Malviya GC 🤪</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:black;
+color:white;
+overflow-x:hidden;
+position:relative;
+padding:20px;
+}
+
+.gradient-bg{
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+background:linear-gradient(
+-45deg,
+#f58529,
+#dd2a7b,
+#8134af,
+#515bd4,
+#00c6ff,
+#00ffb3,
+#ffcc00
+);
+background-size:400% 400%;
+animation:gradientMove 12s ease infinite;
+z-index:-2;
+}
+
+@keyframes gradientMove{
+0%{
+background-position:0% 50%;
+}
+50%{
+background-position:100% 50%;
+}
+100%{
+background-position:0% 50%;
+}
+}
+
+header{
+text-align:center;
+margin-bottom:30px;
+}
+
+header h1{
+font-size:3rem;
+font-weight:700;
+}
+
+header p{
+margin-top:10px;
+font-size:1.1rem;
+}
+
+.card{
+backdrop-filter:blur(15px);
+background:rgba(255,255,255,0.12);
+border:1px solid rgba(255,255,255,0.2);
+border-radius:25px;
+padding:25px;
+margin-bottom:25px;
+box-shadow:0 8px 30px rgba(0,0,0,.3);
+transition:.4s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+h2{
+margin-bottom:20px;
+font-size:1.7rem;
+}
+
+.members{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+gap:15px;
+}
+
+.members div{
+background:rgba(255,255,255,0.15);
+padding:15px;
+border-radius:20px;
+text-align:center;
+font-weight:600;
+transition:.3s;
+}
+
+.members div:hover{
+transform:scale(1.08);
+}
+
+button{
+padding:15px 25px;
+border:none;
+border-radius:30px;
+font-size:1rem;
+cursor:pointer;
+margin:10px 5px;
+font-weight:600;
+transition:.3s;
+}
+
+button:hover{
+transform:scale(1.08);
+}
+
+#memeText,
+#todText,
+#spinResult,
+#countdown{
+font-size:1.1rem;
+line-height:1.8;
+margin-top:20px;
+}
+
+footer{
+text-align:center;
+padding:30px;
+font-size:1rem;
+backdrop-filter:blur(10px);
+background:rgba(255,255,255,0.1);
+border-radius:25px;
+}
+
+@media(max-width:768px){
+
+header h1{
+font-size:2.3rem;
+}
+
+.card{
+padding:20px;
+}
+
+button{
+width:100%;
+}
+
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="gradient-bg"></div>
+
+<header>
+<h1>🌈 Malviya GC</h1>
+<p>🎉 Welcome to Krishu Hub, Total Bakchodi in the Entire Internet 🤪🔥</p>
+</header>
+
+<section class="card">
+<h2>👥 Members</h2>
+<div class="members">
+<div>Kavya</div>
+<div>Krishna</div>
+<div>Priyansh</div>
+<div>Deepti</div>
+<div>Anjnash</div>
+<div>Dakshu</div>
+<div>Divya</div>
+<div>Lakshit</div>
+<div>Dibi</div>
+<div>Simran</div>
+</div>
+</section>
+
+<section class="card">
+<h2>😂 Meme Generator</h2>
+
+<p id="memeText">
+Click below for unlimited bakchodi 🤡
+</p>
+
+<button onclick="generateMeme()">
+Generate Meme
+</button>
+
+</section>
+
+<section class="card">
+<h2>🎭 Truth or Dare</h2>
+
+<p id="todText">
+Truth or Dare? 😈
+</p>
+
+<button onclick="truthQuestion()">
+Truth
+</button>
+
+<button onclick="dareQuestion()">
+Dare
+</button>
+
+</section>
+
+<section class="card">
+
+<h2>🎡 Spin Wheel</h2>
+
+<button onclick="spinWheel()">
+Spin Now
+</button>
+
+<p id="spinResult">
+Who will suffer today? 😂
+</p>
+
+</section>
+
+<section class="card">
+
+<h2>⏳ Random Event Countdown</h2>
+
+<div id="countdown">
+Loading...
+</div>
+
+</section>
+
+<section class="card">
+
+<h2>🏆 Motto</h2>
+
+<p>
+Respect Everyone, Bakchodi by Everyone 😎✨
+</p>
+
+</section>
+
+<footer>
+
+❤️ By Krishu<br>
+📸 Instagram :
+@krishnamalviya223
+
+</footer>
+
+<script>
+
+const memes = [
+
+"🤡 Krishna online aaya matlab 500+ messages guaranteed.",
+
+"😂 Priyansh ka reply speed Government office se inspired hai.",
+
+"😴 Deepti ka '5 minute me aati hu' = 3 ghante.",
+
+"🔥 Dakshu ke bina GC ka chaos level 50% kam ho jata hai.",
+
+"📶 Lakshit ka WiFi aur mood dono kab disconnect ho jaye pata nahi.",
+
+"🎭 Simran typing... aur fir offline.",
+
+"💀 Kavya ke stickers alag hi dimension se aate hain.",
+
+"😈 Divya ka ek message aur pura GC active.",
+
+"🤪 Dibi ka timing hamesha unexpected hota hai.",
+
+"🗿 Anjnash ka reply legendary rarity ka hota hai."
+
+];
+
+function generateMeme(){
+
+let random =
+Math.floor(Math.random()*memes.length);
+
+document.getElementById("memeText").innerHTML =
+memes[random];
+
+}
+
+
+
+const truths = [
+
+"😳 GC me sabse zyada ignore kisko kiya hai?",
+
+"🤫 Sabse weird habit kya hai?",
+
+"😂 Kis member ka message sabse funny lagta hai?",
+
+"👀 Sabse zyada screenshots kiski chat ke liye liye hain?",
+
+"😎 Kis member ka humour best hai?"
+
+];
+
+
+
+const dares = [
+
+"😈 Next message sirf emojis me bhejo.",
+
+"😂 Apna last used emoji bhejo.",
+
+"🎤 Voice note bhejo.",
+
+"🤡 5 minute ke liye apna nickname Potato rakho.",
+
+"📸 Latest gallery pic share karo."
+
+];
+
+
+
+function truthQuestion(){
+
+let random =
+Math.floor(Math.random()*truths.length);
+
+document.getElementById("todText").innerHTML =
+truths[random];
+
+}
+
+
+
+function dareQuestion(){
+
+let random =
+Math.floor(Math.random()*dares.length);
+
+document.getElementById("todText").innerHTML =
+dares[random];
+
+}
+
+
+
+const members = [
+
+"Kavya",
+
+"Krishna",
+
+"Priyansh",
+
+"Deepti",
+
+"Anjnash",
+
+"Dakshu",
+
+"Divya",
+
+"Lakshit",
+
+"Dibi",
+
+"Simran"
+
+];
+
+
+
+const spinDares = [
+
+"😂 Send your latest emoji in GC.",
+
+"😈 Change your nickname for 10 minutes.",
+
+"🤪 Speak only in memes for next 5 messages.",
+
+"🔥 Send your funniest sticker.",
+
+"🎤 Send a voice note saying 'Bakchodi Unlimited'."
+
+];
+
+
+
+function spinWheel(){
+
+let person =
+members[Math.floor(Math.random()*members.length)];
+
+let dare =
+spinDares[Math.floor(Math.random()*spinDares.length)];
+
+document.getElementById("spinResult").innerHTML =
+"🎉 Winner : <b>"+person+
+"</b><br><br>😈 Dare : "+dare;
+
+}
+
+
+
+let futureDate = new Date();
+
+futureDate.setDate(futureDate.getDate()+30);
+
+function updateCountdown(){
+
+let now = new Date();
+
+let diff = futureDate - now;
+
+let days = Math.floor(diff/(1000*60*60*24));
+
+let hours = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+
+let minutes = Math.floor((diff%(1000*60*60))/(1000*60));
+
+let seconds = Math.floor((diff%(1000*60))/1000);
+
+document.getElementById("countdown").innerHTML =
+"🚀 Random Event Coming In<br><br>" +
+days+" Days "+
+hours+" Hours "+
+minutes+" Minutes "+
+seconds+" Seconds";
+
+}
+
+setInterval(updateCountdown,1000);
+
+updateCountdown();
+
+</script>
+
+</body>
+</html>
